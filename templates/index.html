@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Chain Finder</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Wikipedia Chain Finder</h1>
+            <p class="subtitle">Find the shortest path between two Wikipedia articles</p>
+        </header>
+
+        <main>
+            <form id="search-form">
+                <div class="input-group">
+                    <label for="start-article">Start Article</label>
+                    <input
+                        type="text"
+                        id="start-article"
+                        name="start"
+                        placeholder="e.g., Python (programming language)"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="end-article">End Article</label>
+                    <input
+                        type="text"
+                        id="end-article"
+                        name="end"
+                        placeholder="e.g., Guido van Rossum"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <button type="submit" id="search-btn">
+                    <span class="btn-text">Find Path</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </form>
+
+            <div id="error-message" class="error hidden"></div>
+
+            <div id="results" class="results hidden">
+                <h2>Path Found!</h2>
+                <div id="path-display" class="path-display"></div>
+            </div>
+
+            <div id="stats" class="stats hidden">
+                <h3>Statistics</h3>
+                <p>Articles explored: <span id="articles-explored">0</span></p>
+                <p>Time taken: <span id="time-taken">0</span> seconds</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Uses bidirectional search to find connections through Wikipedia links</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
