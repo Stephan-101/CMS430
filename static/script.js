@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const stats = document.getElementById('stats');
     const articlesExplored = document.getElementById('articles-explored');
     const timeTaken = document.getElementById('time-taken');
+    const cacheHits = document.getElementById('cache-hits');
+    const cacheMisses = document.getElementById('cache-misses');
+    const cacheEfficiency = document.getElementById('cache-efficiency');
+    const apiCalls = document.getElementById('api-calls');
 
     function setLoading(isLoading) {
         searchBtn.disabled = isLoading;
@@ -65,6 +69,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayStats(statsData) {
         articlesExplored.textContent = statsData.articles_explored;
         timeTaken.textContent = statsData.time_taken;
+
+        // Display cache statistics
+        const hits = statsData.cache_hits || 0;
+        const misses = statsData.cache_misses || 0;
+        const total = hits + misses;
+        const efficiency = total > 0 ? Math.round((hits / total) * 100) : 0;
+
+        cacheHits.textContent = hits;
+        cacheMisses.textContent = misses;
+        cacheEfficiency.textContent = efficiency;
+        apiCalls.textContent = statsData.api_calls || 0;
+
         stats.classList.remove('hidden');
     }
 
